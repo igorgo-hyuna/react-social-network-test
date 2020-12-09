@@ -1,0 +1,50 @@
+.newPost {
+    margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+
+    .newPost {
+        padding: 0 1rem;
+    }
+}
+
+.newPost textarea {
+    border: 0;
+    height: 150px;
+    width: 100%;
+    border: solid 1px #b8d0d9;
+}
+
+@media screen and (min-width: 768px) {
+
+    .newPost textarea {
+        height: 8rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .newPost textarea {
+        height: 10rem;
+    }
+}
+
+.newPost textarea:focus {
+    outline: 0;
+}
+
+.newPost button {
+    background-color: #1c1c1e;
+    border: 0;
+    padding: .4rem 1rem;
+    margin-right: .4rem;
+    transition: .2s;
+    cursor: pointer;
+    color: #fff;
+}
+
+.newPost button:hover {
+    background-color: #444;
+}
+

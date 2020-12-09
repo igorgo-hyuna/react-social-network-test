@@ -1,2 +1,2 @@
-import DialogsItem from './dialogs-item.js';
+import DialogsItem from './dialog-item.js';
 export default DialogsItem;
