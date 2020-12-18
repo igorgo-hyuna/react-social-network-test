@@ -2,23 +2,27 @@ import React from 'react';
 import s from './dialogs.module.css';
 import DialogItem from "./dialog-item";
 import Message from "./messages";
+import {addMessageActionCreater, updateNewMessageTextActionCreater} from "../../redux/dialogs-page-reducer";
+
 
 const Dialogs= (props) => {
-
+    /* Получаем страницу диалогов */
+    let state = props.store.getState().dialogsPage;
     /* Преобразовуем массив друзей */
-    let newDialogsData = props.state.dialogsData.map( el => (<DialogItem name={el.name} id={el.id} />) );
+    let newDialogsData = state.dialogsData.map( el => (<DialogItem name={el.name} id={el.id} />) );
     /* Преобразовуем массив сообщений */
-    let newMessageDate = props.state.messageDate.map( el => (<Message message={el.message} indicator={el.indicator} />));
+    let newMessageDate = state.messageDate.map( el => (<Message message={el.message} indicator={el.indicator} />));
 
+    // Событие изминения текстового поля
+    let onNewMessageChange = (event) => {
+       let text = event.target.value; // Стучимся к объекту с которым произошло событие
+        props.store.dispatch(updateNewMessageTextActionCreater(text));
+    };
 
-    /* Получаем текст нового сообщения */
-    let newMessage = React.createRef()
-
-    let addNewMessageListener = () => {
-        let text = newMessage.current.value
-        props.addMessage(text)
-        newMessage.current.value = ''
-    }
+    // Событие отпрваки сообщения
+    let onSendMessageClick = () => {
+        props.store.dispatch(addMessageActionCreater());
+    };
 
     return(
         <div className={s.dialogs}>
@@ -28,15 +32,22 @@ const Dialogs= (props) => {
             </div>
 
             <div className={s.dialogs__messages}>
-                {newMessageDate}
+                <div>{newMessageDate}</div>
                 <div className={s.dialogs__wrapp}>
-                    <textarea ref={newMessage}></textarea>
+                    <textarea
+                        value={state.newMessageText}
+                        onChange={onNewMessageChange}
+                        placeholder='Please, input message...'/>
                 </div>
-                <button onClick={addNewMessageListener}>Add</button>
+                <div>
+                    <button
+                        // onClick={addNewMessageListener}
+                        onClick={onSendMessageClick}>Add</button>
+                </div>
             </div>
 
         </div>
     )
-}
+};
 
 export default Dialogs;

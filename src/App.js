@@ -8,10 +8,10 @@ import News from './components/news/news'
 import Music from "./components/music";
 import Settings from "./components/settings";
 import './App.css';
+import DialogsContainer from "./components/dialogs/dialogs-container";
 
 
 const App = (props) => {
-
     return (
             <div className="app-wrapper">
                 <Header/>
@@ -20,15 +20,11 @@ const App = (props) => {
 
                     <Route path='/profile' render={ () =>
                         <Profile
-                            state={props.state.profilePage}
-                            addPost={props.addPost}/> } />
+                            store={props.store}/> }/>
 
                     <Route /* exact */ path='/dialogs' render={ () =>
-                        <Dialogs
-                            state={props.state.dialogsPage}
-                            addMessage={props.addMessage}/> }/>
-
-
+                        <DialogsContainer
+                            store={props.store}/> }/>
 
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
@@ -36,6 +32,6 @@ const App = (props) => {
                 </div>
             </div>
     );
-}
+};
 
 export default App;

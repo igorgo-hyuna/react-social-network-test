@@ -7,8 +7,7 @@ const Message = (props) => {
     let classPart;
     (props.indicator === "friendMessage") ? classPart = s.friendMessage : classPart = s.myMessage;
 
-
     return <div className={s.dialogs__messagesItem}><span className={classPart}>{props.message}</span></div>
-}
+};
 
 export default Message;
