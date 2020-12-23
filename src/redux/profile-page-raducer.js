@@ -14,26 +14,33 @@ let initialState = {
 
 export const profilePageReducer = (state = initialState, action) => {
 
+    // Логика добавления нового поста в профайле
     switch(action.type){
-        case ADD_POST:
+        case ADD_POST: {
             let newPost = {
                 id: 5,
                 message: state.newPostText,
                 likesCount: 0
             };
-            state.posts.push(newPost); // Добавляем новый элемент в массив объектов
-            state.newPostText = '';
-            console.log(state.newPostText);
-            return state;
+            let stateCopy = {...state};
+            stateCopy.posts = [...stateCopy.posts];
+            stateCopy.posts.push(newPost); // Добавляем новый элемент в массив объектов
+            stateCopy.newPostText = '';
+            return stateCopy;
+        }
 
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText; // Добавляем новый элемент в массив объектов
-            return state;
+        // Логика отслеживание изминений текстового поля
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.newPostText = action.newText; // Добавляем новый элемент в массив объектов
+            return stateCopy;
+        }
 
         default:
             return state;
     }
 };
+
 export const addPostActionCreater = () => ({type: ADD_POST});
 export const updateNewPostTextActionCreater = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 export default profilePageReducer;

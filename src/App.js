@@ -9,9 +9,10 @@ import Music from "./components/music";
 import Settings from "./components/settings";
 import './App.css';
 import DialogsContainer from "./components/dialogs/dialogs-container";
+import ProfileContainer from "./components/profile/profile-container";
 
 
-const App = (props) => {
+const App = () => {
     return (
             <div className="app-wrapper">
                 <Header/>
@@ -19,12 +20,10 @@ const App = (props) => {
                 <div className="app-wrapper__content">
 
                     <Route path='/profile' render={ () =>
-                        <Profile
-                            store={props.store}/> }/>
+                        <ProfileContainer/> }/>
 
                     <Route /* exact */ path='/dialogs' render={ () =>
-                        <DialogsContainer
-                            store={props.store}/> }/>
+                        <DialogsContainer/> }/>
 
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>

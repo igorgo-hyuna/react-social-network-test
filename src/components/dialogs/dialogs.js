@@ -2,12 +2,11 @@ import React from 'react';
 import s from './dialogs.module.css';
 import DialogItem from "./dialog-item";
 import Message from "./messages";
-import {addMessageActionCreater, updateNewMessageTextActionCreater} from "../../redux/dialogs-page-reducer";
 
 
 const Dialogs= (props) => {
     /* Получаем страницу диалогов */
-    let state = props.store.getState().dialogsPage;
+    let state = props.store;
     /* Преобразовуем массив друзей */
     let newDialogsData = state.dialogsData.map( el => (<DialogItem name={el.name} id={el.id} />) );
     /* Преобразовуем массив сообщений */
@@ -16,12 +15,12 @@ const Dialogs= (props) => {
     // Событие изминения текстового поля
     let onNewMessageChange = (event) => {
        let text = event.target.value; // Стучимся к объекту с которым произошло событие
-        props.store.dispatch(updateNewMessageTextActionCreater(text));
+        props.onNewMessageChange(text);
     };
 
     // Событие отпрваки сообщения
     let onSendMessageClick = () => {
-        props.store.dispatch(addMessageActionCreater());
+        props.onSendMessageClick();
     };
 
     return(

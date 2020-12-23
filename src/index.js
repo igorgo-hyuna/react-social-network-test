@@ -5,27 +5,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
-let rerenderEntireTree = (state) => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <React.StrictMode>
-                <App state={state}
-                     dispatch={store.dispatch.bind(store)} /// .bind(store) - связываем addPost, который будет использоваться в new-post.js через props с state. Аналогично для каллбэков ниже, только своих функциа в своих файлах
-                     store={store}/>
-            </React.StrictMode>
-        </BrowserRouter>,
-        document.getElementById('root')
-    );
-};
 
-//Отрисовуем первый раз App
-rerenderEntireTree(store.getState());
-//Передаём функцию рендера приложения
-store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
-});
+ReactDOM.render(
+    <BrowserRouter>
+        <React.StrictMode>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </React.StrictMode>
+    </BrowserRouter>,
+    document.getElementById('root')
+);
+
 
 // React default import
 reportWebVitals();
