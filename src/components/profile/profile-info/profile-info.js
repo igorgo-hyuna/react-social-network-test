@@ -5,7 +5,7 @@ const ProfileInfo = (props) => {
     return(
         <div className={s.descriptionBlock}>
             <div>
-                <img className="content-bg" src="https://wallpapershome.ru/images/pages/pic_v/15779.jpg" alt="content-img"/>
+                <img className="content-bg" src="https://www.rewizor.ru/files/1960668x8w.jpg" alt="content-img"/>
             </div>
             <div>
                 ava + desk

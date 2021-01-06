@@ -8,9 +8,9 @@ const Dialogs= (props) => {
     /* Получаем страницу диалогов */
     let state = props.store;
     /* Преобразовуем массив друзей */
-    let newDialogsData = state.dialogsData.map( el => (<DialogItem name={el.name} id={el.id} />) );
+    let newDialogsData = state.dialogsData.map( el => (<DialogItem name={el.name} key={el.id} id={el.id} />) );
     /* Преобразовуем массив сообщений */
-    let newMessageDate = state.messageDate.map( el => (<Message message={el.message} indicator={el.indicator} />));
+    let newMessageDate = state.messageDate.map( el => (<Message message={el.message} key={el.id} indicator={el.indicator} />));
 
     // Событие изминения текстового поля
     let onNewMessageChange = (event) => {

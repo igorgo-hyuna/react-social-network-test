@@ -12,7 +12,8 @@ const Profile = (props) => {
         state.posts.map(postElement =>
             <PostItem
                 message={postElement.message}
-                likesCount={postElement.likesCount}/>);
+                likesCount={postElement.likesCount}
+                key={postElement.id}/>);
 
     return( <div className={s.postBox}>
                 <ProfileInfo/>

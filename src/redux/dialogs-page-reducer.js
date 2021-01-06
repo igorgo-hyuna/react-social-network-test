@@ -25,38 +25,36 @@ let initialState = {
 };
 
 const dialogsPageReducer = (state = initialState, action) => {
-    // Ниже равносильная запись
+    // Копируем Sate. Ниже равносильная запись
     // let stateCopy = {...state};
     // stateCopy.messageDate = {...state.messageDate};
-    let stateCopy = {
-        ...state, // Сразу делаем копию самого объекта
-        messageDate: [...state.messageDate] // Потом делаем копию внутренних объектов
-    };
+
+
 
 
     switch(action.type) {
-        case ADD_MESSAGE: {
-            let newText = state.newMessageText;
-            // Копируем State
-            let stateCopy = {...state};
-            stateCopy.messageDate = [...state.messageDate];
-            stateCopy.messageDate.push({id: 7, message: newText, indicator: 'myMessage'});
-            stateCopy.newMessageText = '';
-            return stateCopy;
-        }
+        // Добавить новое сообщение
+        case ADD_MESSAGE:
+            // Создаём глубокую копию объекта State, создаём гл. копию объекта диалогов и добавляем в него новоё сообщение
+            return {
+               ...state,
+                messageDate: [...state.messageDate, {id: 7, message: state.newMessageText, indicator: 'myMessage'}],
+                newMessageText: ''
+            };
 
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            // Копируем State
-            let stateCopy = {...state};
-            stateCopy.newMessageText = action.newText;
-            return stateCopy;
-        }
+        // Изминение текстового поля
+        case UPDATE_NEW_MESSAGE_TEXT:
+            return {
+                ...state,
+                newMessageText: action.newText
+            };
+
         default: {
             return state;
         }
     }
 };
-export const addMessageActionCreater = () => ({type: ADD_MESSAGE});
-export const updateNewMessageTextActionCreater = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
+export const addMessageActionCreater = () => ({type: ADD_MESSAGE}); // Возвращаем тип. Сокращение в одну строку
+export const updateNewMessageTextActionCreater = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text}); // Возвращаем тип. Сокращение в одну строку
 
 export default dialogsPageReducer;

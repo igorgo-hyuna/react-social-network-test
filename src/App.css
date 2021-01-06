@@ -2,6 +2,25 @@ body {
     background-color: #e8f9ff;
 }
 
+button{
+    background-color: #1c1c1e;
+    border: 0;
+    padding: .4rem 1rem;
+    margin-right: .4rem;
+    transition: .2s;
+    cursor: pointer;
+    color: #fff;
+    border-radius: .2rem;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+button:focus {
+    outline: 0;
+}
+
 .app-wrapper {
     display: grid;
     grid-template-rows: 60px 1fr;

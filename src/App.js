@@ -10,6 +10,7 @@ import Settings from "./components/settings";
 import './App.css';
 import DialogsContainer from "./components/dialogs/dialogs-container";
 import ProfileContainer from "./components/profile/profile-container";
+import UsersContainer from "./components/users/users-container";
 
 
 const App = () => {
@@ -24,6 +25,9 @@ const App = () => {
 
                     <Route /* exact */ path='/dialogs' render={ () =>
                         <DialogsContainer/> }/>
+
+                    <Route /* exact */ path='/users' render={ () =>
+                        <UsersContainer/> }/>
 
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
