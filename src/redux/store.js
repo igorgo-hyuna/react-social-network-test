@@ -2,7 +2,7 @@ import profilePageReducer from "./profile-page-raducer";
 import dialogsPageReducer from "./dialogs-page-reducer";
 import siderbarReducer from "./sidebar-reducer";
 
-
+//Мы не используем данный файл. Этот стор - пример реализации стора у редакса
 let store = {
 
     _state: {

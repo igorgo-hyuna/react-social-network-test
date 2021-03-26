@@ -9,6 +9,7 @@ button.btnUnFollow {
 .usersContainer {
     display: inline-block;
     width: 100%;
+    text-align: center;
 }
 
 .usersContainer .__item {
@@ -72,4 +73,21 @@ button.btnUnFollow {
     .usersContainer ._bottomContainer div {
         padding-left: 1rem;
     }
+}
+
+.paginationBox {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 300px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.paginationBox span {
+    margin-right: 5px;
+    cursor: pointer;
+}
+.paginationBox span.selectedPage {
+    font-weight: bold;
 }
