@@ -5,7 +5,7 @@ import siderbarReducer from "./sidebar-reducer";
 import usersPageReducer from "./users-raducer";
 
 
-// Создаем обхект стейт редьюсеров
+// Создаем объект стейт редьюсеров
 let reducers = combineReducers({
     profilePage: profilePageReducer,
     dialogsPage: dialogsPageReducer,

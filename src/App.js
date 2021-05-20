@@ -1,9 +1,7 @@
 import React from 'react';
 import Header from './components/header/header';
 import Navbar from './components/navbar/navbar';
-import Dialogs from "./components/dialogs";
-import Profile from './components/profile/profile';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import News from './components/news/news'
 import Music from "./components/music";
 import Settings from "./components/settings";

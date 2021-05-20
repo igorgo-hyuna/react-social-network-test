@@ -1,6 +1,8 @@
 import React from 'react';
 import s from "./users.module.css";
 import undefinedUserPhoto from '../../assets/images/undefined-user.png';
+import {NavLink} from "react-router-dom";
+
 
 let users = (props) => {
     // Получаем номер текущей страницы и округляем его
@@ -22,7 +24,9 @@ let users = (props) => {
             props.users.map(u => <div key={u.id} className={s.__item}>
                     <div className={s._topContainer}>
                         <div>
-                            <img src={u.photos.small != null ? u.photos.small : undefinedUserPhoto} alt=""/>
+                            <NavLink to={'/profile/' + u.id}>
+                                <img src={u.photos.small != null ? u.photos.small : undefinedUserPhoto} alt=""/>
+                            </NavLink>
                         </div>
                     </div>
                     <div className={s._bottomContainer}>
