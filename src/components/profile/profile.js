@@ -14,7 +14,7 @@ const Profile = (props) => {
                 message={postElement.message}
                 likesCount={postElement.likesCount}
                 key={postElement.id}/>);
-
+    debugger;
     return( <div className={s.postBox}>
                 <ProfileInfo/>
                 <NewPostContainer/>
