@@ -13,9 +13,9 @@ const ProfileInfo = (props) => {
                 <img className="content-bg" src="https://www.rewizor.ru/files/1960668x8w.jpg" alt="content-img"/>
             </div>
             <div>
-
                 <img src={props.profile.photos.large} alt={props.profile.fullName}/>
-                ava + desk
+                <p>{props.profile.aboutMe}</p>
+                <br />
             </div>
         </div>
     )
