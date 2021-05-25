@@ -3,6 +3,7 @@ import profilePageReducer from "./profile-page-raducer";
 import dialogsPageReducer from "./dialogs-page-reducer";
 import siderbarReducer from "./sidebar-reducer";
 import usersPageReducer from "./users-raducer";
+import {authReducer} from "./auth-reducer";
 
 
 // Создаем объект стейт редьюсеров
@@ -10,7 +11,8 @@ let reducers = combineReducers({
     profilePage: profilePageReducer,
     dialogsPage: dialogsPageReducer,
     sidebar: siderbarReducer,
-    usersPage: usersPageReducer
+    usersPage: usersPageReducer,
+    auth: authReducer
 });
 
 // Создаем хранилище на основе редьюсоров
