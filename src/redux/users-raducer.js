@@ -15,7 +15,6 @@ let initialState = {
 };
 
 export const usersPageReducer = (state = initialState, action) => {
-
     // Логика добавления нового поста в профайле
     switch (action.type) {
         case FOLLOW:

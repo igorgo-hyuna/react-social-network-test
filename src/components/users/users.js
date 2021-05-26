@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./users.module.css";
 import undefinedUserPhoto from '../../assets/images/undefined-user.png';
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 
 let users = (props) => {
@@ -42,10 +43,31 @@ let users = (props) => {
                             {/* Тернарное выражение */}
                             {u.followed
                                 ? <button onClick={() => {
-                                    props.unFollow(u.id)
+
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY": "b9361731-f53d-4604-bf4b-16540b08e7d6"
+                                        }
+                                    })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.unFollow(u.id);
+                                            }
+                                        });
                                 }} className={s.btnUnFollow}>Unfollow</button>
                                 : <button onClick={() => {
-                                    props.follow(u.id)
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY": "b9361731-f53d-4604-bf4b-16540b08e7d6"
+                                        }
+                                    })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.follow(u.id);
+                                            }
+                                        });
                                 }}>Follow</button>}
                         </div>
                     </div>
