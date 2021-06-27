@@ -6,11 +6,12 @@ import {
     unFollow,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching
+    toggleIsFetching,
+    toggleFollowingProgress
 } from '../../redux/users-raducer';
 import Users from './users';
 import Preloader from "../common/preloader/preloader";
-import {getUsers, usersAPI} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 // Side-Эффекты
 class UsersContainer extends React.Component {
@@ -48,12 +49,14 @@ class UsersContainer extends React.Component {
         return <>
                 { this.props.isFetching ? <Preloader/> : null }
                 <Users totalUsersCount={this.props.totalUsersCount}
-                      pageSize={this.props.pageSize}
-                      currentPage={this.props.currentPage}
-                      users={this.props.users}
-                      onPageChanged={this.onPageChanged}
-                      unFollow={this.props.unFollow}
-                      follow={this.props.follow}/>
+                       pageSize={this.props.pageSize}
+                       currentPage={this.props.currentPage}
+                       users={this.props.users}
+                       onPageChanged={this.onPageChanged}
+                       unFollow={this.props.unFollow}
+                       follow={this.props.follow}
+                       followingInProgress={this.props.followingInProgress}
+                       toggleFollowingProgress={this.props.toggleFollowingProgress} />
                 </>
     };
 }
@@ -65,11 +68,12 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 };
 
 // const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
 // export default UsersContainer;
-export default connect(mapStateToProps, {follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
+export default connect(mapStateToProps, {follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress})(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
 
