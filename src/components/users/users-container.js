@@ -7,7 +7,8 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     toggleIsFetching,
-    toggleFollowingProgress
+    toggleFollowingProgress,
+    getUsersThunkCreator
 } from '../../redux/users-raducer';
 import Users from './users';
 import Preloader from "../common/preloader/preloader";
@@ -22,14 +23,7 @@ class UsersContainer extends React.Component {
 
     // Запрашуем пользователей у сервака, вовремя отрисовки DOM
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        // Получаем пользователей. Response - можно прмониторить через debugger, что бы увидеть, что он возвращает
-
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount);
-            });
+        this.props.getUsersThunkCreator();
     };
 
     // Клик по странице пагинации
@@ -75,5 +69,8 @@ let mapStateToProps = (state) => {
 
 // const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
 // export default UsersContainer;
-export default connect(mapStateToProps, {follow, unFollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress})(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
+export default connect(mapStateToProps,
+    {follow, unFollow, setUsers,
+        setCurrentPage, setTotalUsersCount, toggleIsFetching,
+        toggleFollowingProgress, getUsersThunkCreator})(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
 
