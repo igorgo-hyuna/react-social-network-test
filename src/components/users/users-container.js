@@ -2,19 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
     follow,
-    setUsers,
     unFollow,
     setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
     toggleFollowingProgress,
-    getUsersThunkCreator
+    getUsers
 } from '../../redux/users-raducer';
 import Users from './users';
 import Preloader from "../common/preloader/preloader";
-import {usersAPI} from "../../api/api";
 
-// Side-Эффекты
+
 class UsersContainer extends React.Component {
     // Конструктор перебрасывает конструирование класса (наследуется от React.Component) на супер. Можно не писать, происходит по умолчанию
     // constructor(props){
@@ -23,19 +19,12 @@ class UsersContainer extends React.Component {
 
     // Запрашуем пользователей у сервака, вовремя отрисовки DOM
     componentDidMount() {
-        this.props.getUsersThunkCreator();
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     };
 
     // Клик по странице пагинации
     onPageChanged = (pageNumber) => {
-        // Делаем активной страницу
-        this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
-        // Получаем пользователей. Response - можно прмониторить через debugger, что бы увидеть, что он возвращает
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-        });
+        this.props.getUsers(pageNumber, this.props.pageSize);
     };
 
     render () {
@@ -49,8 +38,7 @@ class UsersContainer extends React.Component {
                        onPageChanged={this.onPageChanged}
                        unFollow={this.props.unFollow}
                        follow={this.props.follow}
-                       followingInProgress={this.props.followingInProgress}
-                       toggleFollowingProgress={this.props.toggleFollowingProgress} />
+                       followingInProgress={this.props.followingInProgress} />
                 </>
     };
 }
@@ -70,7 +58,6 @@ let mapStateToProps = (state) => {
 // const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
 // export default UsersContainer;
 export default connect(mapStateToProps,
-    {follow, unFollow, setUsers,
-        setCurrentPage, setTotalUsersCount, toggleIsFetching,
-        toggleFollowingProgress, getUsersThunkCreator})(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
+    {follow, unFollow, setCurrentPage,
+        toggleFollowingProgress, getUsers})(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
 
