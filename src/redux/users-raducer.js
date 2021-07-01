@@ -85,6 +85,7 @@ export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS
 // Санка. Получаем пользователей
 export const getUsers = (currentPage, pageSize) => {
     return (dispatch) => {
+        dispatch(setCurrentPage(currentPage));
         dispatch(toggleIsFetching(true));
         // Получаем пользователей. Response - можно прмониторить через debugger, что бы увидеть, что он возвращает
 
@@ -95,7 +96,6 @@ export const getUsers = (currentPage, pageSize) => {
         });
     };
 };
-
 // Санка. Подписка
 export const follow = (userId) => {
     return (dispatch) => {
@@ -109,7 +109,6 @@ export const follow = (userId) => {
             });
     };
 };
-
 // Санка. Отписка
 export const unFollow = (userId) => {
     return (dispatch) => {
