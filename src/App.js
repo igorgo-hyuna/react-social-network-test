@@ -9,6 +9,7 @@ import DialogsContainer from "./components/dialogs/dialogs-container";
 import ProfileContainer from "./components/profile/profile-container";
 import UsersContainer from "./components/users/users-container";
 import HeaderContainer from "./components/header/header-container";
+import Login from "./components/login/login";
 
 
 const App = () => {
@@ -30,6 +31,8 @@ const App = () => {
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
+                    <Route path='/login'
+                           render={ () => <Login /> }/>
                 </div>
             </div>
     );

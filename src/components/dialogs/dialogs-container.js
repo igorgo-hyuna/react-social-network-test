@@ -2,11 +2,13 @@ import React from 'react';
 import {addMessageActionCreater, updateNewMessageTextActionCreater} from "../../redux/dialogs-page-reducer";
 import Dialogs from "./dialogs";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 //Функция возвращает State для объекта dialogsPage
 let mapStateToProps = (state) => {
     return {
-        store: state.dialogsPage
+        store: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 };
 
@@ -22,7 +24,11 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
+// HOC-компонента
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+
 // Создаём контейнерную функцию для презинтационной компоненты
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 export default DialogsContainer;
