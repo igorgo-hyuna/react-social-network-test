@@ -10,6 +10,7 @@ import {
 import Users from './users';
 import Preloader from "../common/preloader/preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
@@ -58,7 +59,7 @@ let mapStateToProps = (state) => {
 
 // const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
 // export default UsersContainer;
-export default withAuthRedirect(connect(mapStateToProps,
-    {follow, unFollow, setCurrentPage,
-        toggleFollowingProgress, getUsers})(UsersContainer)); // Функция отвечает за передачу дизпатчей в сторе user-reducer и обратное прокидывание з него с компоненту props
-
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {follow, unFollow, setCurrentPage, toggleFollowingProgress, getUsers})
+)(UsersContainer);

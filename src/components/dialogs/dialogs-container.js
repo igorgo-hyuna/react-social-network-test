@@ -3,6 +3,7 @@ import {addMessageActionCreater, updateNewMessageTextActionCreater} from "../../
 import Dialogs from "./dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 //Функция возвращает State для объекта dialogsPage
 let mapStateToProps = (state) => {
@@ -24,11 +25,8 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-// HOC-компонента
-let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
-
-// Создаём контейнерную функцию для презинтационной компоненты
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect)
+(Dialogs);
