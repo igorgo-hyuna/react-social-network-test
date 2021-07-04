@@ -30,6 +30,5 @@ let mapStateToProps = (state) => ({
 
 export default compose(
     connect(mapStateToProps, {getUserProfile}), //3й шаг. Срабатывает connect(mapStateToProps, {getUserProfile})(результат шага 2)
-    withRouter, //2й шаг. withRouter обрабатывает результат шага 1.
-    withAuthRedirect //1й шаг. withAuthRedirect обрабатывает ProfileContainer
+    withRouter //2й шаг. withRouter обрабатывает результат шага 1.
 )(ProfileContainer);// Целевой объект
